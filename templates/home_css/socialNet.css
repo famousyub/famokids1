@@ -1,0 +1,49 @@
+/*Navigation Bar*/
+.form-inline
+{
+  position: absolute;
+  right: 10px;
+}
+
+.form-inline .btn
+{
+  width: 100px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+  height: 37px;
+  line-height:0px;
+  border: 1px solid #2e2e2e;
+  background-color: transparent;
+  color: #2e2e2e;
+}
+
+.form-inline .btn:hover
+{
+  background-color: #ffffff;
+  color: #2e2e2e;
+}
+
+
+
+
+/*Home.php Page*/
+.myJoinForm
+{
+  border: 1px solid #e2e2e2;
+  padding: 30px 30px;
+  margin-top: 40px;
+  height: 500px;
+  background-color: #ffffff;
+}
+
+.myJoinForm .btn
+{
+  background-color: #e3f2fd;
+  color:#4e4e4e;
+}
+
+.myJoinForm .btn:hover
+{
+  background-color: #ef3d3d;
+  color:#ffffff;
+}

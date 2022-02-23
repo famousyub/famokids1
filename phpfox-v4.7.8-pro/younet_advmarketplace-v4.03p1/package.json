@@ -1,0 +1,12 @@
+{
+    "id": "P_AdvMarketplace",
+    "apps_dir": "p-advmarketplace",
+    "internal_id": null,
+    "version": "4.03p1",
+    "current_version": null,
+    "name": "Advanced Marketplace",
+    "module": false,
+    "type": "app",
+    "icon": "<div class=\"app_icons image_load\" data-src=\"http:\/\/192.168.15.17\/pf47\/PF.Site\/Apps\/p-advmarketplace\/icon.png\"><\/div>",
+    "is_core": false
+}

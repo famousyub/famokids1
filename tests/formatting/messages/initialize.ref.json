@@ -1,0 +1,24 @@
+[
+    {
+        "id": "initialize",
+        "jsonrpc": "2.0",
+        "result": {
+            "capabilities": {
+                "documentFormattingProvider": true,
+                "documentOnTypeFormattingProvider": {
+                    "firstTriggerCharacter": ";"
+                },
+                "documentRangeFormattingProvider": true,
+                "textDocumentSync": {
+                    "change": 2,
+                    "openClose": true,
+                    "save": {
+                        "includeText": false
+                    },
+                    "willSave": true,
+                    "willSaveWaitUntil": false
+                }
+            }
+        }
+    }
+]

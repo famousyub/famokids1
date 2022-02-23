@@ -1,0 +1,745 @@
+<!-- Footer -->
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/5.0.4/turf.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"  />
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="map_container">
+ <div id="map"></div>
+</div>
+
+
+<script>
+
+ function showLocation(position) {
+            var latitude = position.coords.latitude;
+ var longitude = position.coords.longitude;
+            //alert("Latitude : " + latitude + " Longitude: " + longitude);
+
+
+
+              var map = L.map('map').setView([latitude, longitude], 15);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var xlng = 0.000256;
+var xlat = 0.000200;
+
+map.on('click', function(e) {
+  console.log(e.latlng.lat,e.latlng.lng);
+  //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+  L.polygon([
+    [e.latlng.lat-xlat,e.latlng.lng-xlng],
+    [e.latlng.lat+xlat,e.latlng.lng-xlng],
+    [e.latlng.lat-xlat,e.latlng.lng+xlng],
+    [e.latlng.lat+xlat,e.latlng.lng+xlng],
+  ]).addTo(map);
+  
+    L.polyline([
+    [e.latlng.lat,e.latlng.lng-xlng],
+    [e.latlng.lat,e.latlng.lng+xlng]
+  ]).addTo(map);
+  
+});
+         }
+
+         function errorHandler(err) {
+            if(err.code == 1) {
+               alert("Error: Access is denied!");
+            } else if( err.code == 2) {
+               alert("Error: Position is unavailable!");
+            }
+         }
+			
+         function getLocation() {
+
+            if(navigator.geolocation) {
+               
+               // timeout at 60000 milliseconds (60 seconds)
+               var options = {timeout:60000};
+               navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+            } else {
+               alert("Sorry, browser does not support geolocation!");
+            }
+         }
+
+
+ getLocation() ;
+
+</script>
+
+
+
+
+
+<style>
+#map {
+  width:100%;
+  height:500px;
+}
+
+pre {
+    min-width:300px;
+    white-space: pre-wrap;     
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;    
+    white-space: -o-pre-wrap;  
+    word-wrap: break-word;     
+}
+
+.leaflet-popup-content-wrapper {
+    min-width: 350px;
+}
+
+</style>
+
+
+
+
+<script>
+
+/*
+
+*************
+30.10 ~ included vendor prefixes
+28.10 ~ added code that closed the upload frame if we click outside of our avatar.
+
+This is the jQuery solution to our animation. Out of performance reasons I would always advise the usage of CSS animations or some other GPU accelerated animations with the  use of TweenJS, GSAP or VelocityJS.
+
+I hope you like the animation, thanks! :)
+
+*************
+
+var circle = $('#circle').get(0);
+var cl = circle.getTotalLength();
+
+var frame = $('#cameraFrame').get(0);
+var fl = frame.getTotalLength();
+
+var plusG = $('#plus')
+var plusLine = $('#plusLine').get(0).getTotalLength();
+$(plusG).css({
+  'stroke-dasharray':plusLine,
+  'stroke-dashoffset':plusLine
+});
+$(circle).css({
+  'stroke-dasharray':cl,
+  'stroke-dashoffset':cl
+});
+console.log(plusLine)
+$(frame).css({
+  'stroke-dasharray':fl,
+  'stroke-dashoffset':fl-fl
+});
+/*
+$('.avatar').hover(
+  function(){
+    $(circle).css({
+      'stroke-dashoffset':0
+    });
+    $(frame).css({
+      'stroke-dashoffset':0
+    });
+    $(plusG).css({
+      'stroke-dashoffset':0
+    });
+},function(){
+   $(circle).css({
+      'stroke-dashoffset':cl});
+    $(frame).css({
+      'stroke-dashoffset':fl
+    });
+  $(plusG).css({
+      'stroke-dashoffset':plusLine
+    });
+});*/
+$('#fileUpload').on('change',function(){
+  $('.avatar').removeClass('open');
+});
+$('.avatar').on('click',function(){
+  $(this).addClass('open');
+});
+// added code to close the modal if you click outside
+$('html').click(function() {
+ $('.avatar').removeClass('open');
+});
+
+$('.avatar').click(function(event){
+    event.stopPropagation();
+});
+
+
+</script>
+
+
+
+
+
+<html xmlns:fb="http://www.famousme.com/2008/fml">
+<font face=verdana color=black size=2><h1>What if...</h1>
+you could start over, re-build it, better than it is now, better than we thought possible...<br>
+<center><b>Without walls, without limits, we shall succeed.</b></center><br><br>
+<center>
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
+<div class="container clearfix">
+   <div class="avatar">
+     <input id="fileUpload" type="file" />
+      <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve">
+      <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
+         c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"/>
+      <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
+         S17.7,10.3,17.7,7.5z"/>
+      <g id="plus">
+         <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"/>
+         <path fill="none" class="line"stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"/>
+      </g>
+     </svg>
+     <div id="openModal">
+       <span>Drop here or</span>
+     </div>
+      </div
+   </div>
+        <div class="right">
+          <p>Mike</p>
+          <p>Miller</p>
+          <p>France</p>
+        </div>
+</div>
+<p class="src">Photo source: Shutterstock<p>
+<!--
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<span>
+<iframe frameborder="no" id="f11f88a338" name="f33a87791c" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 90px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" 
+src="http://www.facebook.com/plugins/like.php?channel_url=http%3A%2F%2Fstatic.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%3Fversion%3D3%23cb%3Df1692fef68%26origin%3Dhttp%253A%252F%252Fwww.harvardconnection.co%252Ff6b3be0d4%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;href=http%3A%2F%2Fwww.harvardconnection.co&amp;layout=button_count&amp;locale=en_US&amp;node_type=link&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=90"></iframe></span>
+<br>
+<a href="#" class="lbAction" rel="deactivate"><font color=black size=4>Continue</font></a>
+-->
+</center>
+</font>
+<html>
+<style>
+
+$blue: #2B2F3F
+$pinkish: #C68587
+$reddish: #BA4773
+
+html 
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/176026/noise.png)
+  background-color: #fff
+  
+.avatar
+  float: left
+  display: inline-block
+  overflow: hidden
+  width: 10vw
+  height: 10vw
+  border-radius: 100%
+  background: $pinkish
+  border: 6px solid #B3C9CB
+  background-image: url(https://scontent-vie1-1.cdninstagram.com/hphotos-ash/t51.2885-19/10932224_821299211264682_1488190390_a.jpg)
+  background-size: cover
+  background-position: 50% 25%
+  -webkit-transition: border 0.5s linear
+  -moz-transition: border 0.5s linear
+  -o-transition: border 0.5s linear
+  transition: border 0.5s linear
+    
+  &:after
+    content: ""
+    position: absolute
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(240,227,199,1)), color-stop(100%,rgba(107,202,180,1)))
+    width: 10vw
+    height: 10vw
+    border-radius: 100%
+    border: 1px solid white
+    left: 4px
+    top: 4px
+    opacity: 0
+    -webkit-transition: opacity 0.3s linear
+    -moz-transition: opacity 0.3s linear
+    -o-transition: opacity 0.3s linear
+    transition: opacity 0.3s linear
+    cursor: pointer
+    -webkit-transform-style: preserve-3d
+      
+.avatar:hover:after
+  opacity: 0.7
+.avatar.open:hover:after
+  opacity: 0
+.container
+  text-align: center
+  left: 50%
+  -webkit-transform: translate3d(-50%,-50%,0)
+  -moz-transition: translate3d(-50%,-50%,0)
+  -o-transition: translate3d(-50%,-50%,0)
+  transition: translate3d(-50%,-50%,0)
+  position: absolute
+  top: 50%
+#camera
+  -webkit-transform: scale(0.4)
+  position: relative
+  z-index: 9999
+  cursor: pointer
+  top: 18%
+  overflow: hidden
+
+#circle
+  -webkit-transform: scale(0.75)
+  -webkit-transform-origin: 50% 50%
+  -webkit-transition: all 0.3s linear
+  stroke-dashoffset: 33px
+  stroke-dasharray: 33px
+#cameraFrame
+  -webkit-transition: all 0.5s linear
+  stroke-dashoffset: 72px
+  stroke-dasharray: 72px
+#plus
+  -webkit-transition: all 0.3s linear
+  stroke-dashoffset: 5px
+  stroke-dasharray: 5px
+  
+#fileUpload
+  overflow: hidden
+  position: absolute
+  width: 70px
+  padding: 10px
+  opacity: 0
+  left: 50%
+  top: 70%
+  -webkit-transform: translate3d(-50%,-50%,0)
+  z-index: 9999
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+  &:focus
+    outline: none
+    background: transparent
+#openModal   
+  width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+  border-radius: 100%
+  -webkit-transform: scale(0)
+  z-index: 8888
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+  -webkit-transition-delay: 250ms
+  transition-delay: 250ms
+  background-color: rgba(255,255,255,0.9)
+  
+#openModal
+  > span
+    font-family: raleway
+    font-size: 1.2vw
+    top: 40%
+    position: absolute
+    left: 50%
+    white-space: nowrap
+    -webkit-transform: translate3d(-50%,0,0)
+    color: rgba(0,0,0,0.7)
+.separatorLine
+  margin-top: 15px
+  width: 300%
+  position: absolute
+  height: 1px
+  background: rgba(0,0,0,0.6)
+.clearfix:after 
+  clear: both
+  content: "."
+  display: block
+  height: 0
+  visibility: hidden
+
+.clearfix 
+  display: inline-block
+
+.clearfix 
+  display: block
+.right
+  margin-left: 12.5vw
+  bottom: 0
+  position: absolute
+  float: right
+.right > p
+  font-size: 2vw
+  text-align: left
+  text-transform: none
+  font-family: Raleway
+  margin-top: 0.5vw
+  color: rgba(0,0,0,0.7)
+  &:last-child
+    margin-top: 0.2vw
+    font-size: 0.9vw
+    text-align: right
+    color: rgba(0,0,0,0.5)
+       
+.avatar:hover
+  > #camera 
+    > #cameraFrame
+      stroke-dashoffset: 0
+.avatar:hover
+  > #camera 
+    > #circle
+      stroke-dashoffset: 0px
+.avatar:hover
+  > #camera 
+    > #plus
+      stroke-dashoffset: 0px
+      
+.avatar:active
+  > #camera
+    > #cameraFrame
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0.7)
+
+.avatar:active
+  > #camera
+    > #circle
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0.7)
+
+.avatar:active
+  > #camera
+    > #plus
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0)
+.src
+  font-family: raleway
+  position: absolute
+  display: inline-block
+  right: 0
+  bottom: 0
+  padding: 10px
+#camera
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+.avatar.open
+  > #camera
+    -webkit-transform: scale(0)
+    fill: white
+.avatar.open
+  > #openModal
+    -webkit-transform: scale(0.95)
+.avatar.open
+  > #fileUpload
+    opacity: 1
+    -webkit-transition-delay: 250ms
+.avatar.open
+  > #camera
+    visibility: hidden
+</style>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<title>HarvardConnection | Buy Us</title> 
+<link rel="stylesheet" href="style.css"> 
+<link rel="shortcut icon" href="favicon.ico"> 
+  <div id="fb-root"></div>
+  <script>
+    /*window.fbAsyncInit = function() {
+https://fantastic-django-blog.herokuapp.com/posts/create/
+   FB.Canvas.setAutoResize();
+    };
+    (function() {
+   var e = document.createElement('script'); e.async = true;
+   //connect.facebook.net/en_US/all.js'
+   e.src =  document.location.protocol +connect.facebook.net/en_US/all.js';
+//'http://localhost:8082/famousme/index.php?page=login';
+   document.getElementById('fb-root').appendChild(e);
+    }());*/
+  </script>
+
+
+<center>
+
+<table class="bordertable" cellspacing=0 cellpadding=0 border=0 width=700>
+
+  <tr><td>
+
+      <table class="bottomborder" cellspacing=0 cellpadding=0 border=0 width=100%>
+
+      <tr><td width=350 bgcolor=#3B5998>
+
+          <img src='images/logo-left.jpg'></td>
+
+          <td><table cellspacing=0 cellpadding=0 border=0 width=100%><tr><td>
+
+          <table cellspacing=0 cellpadding=0 border=0 width=100%>
+
+          <tr><td><a href='index.php'><img src='images/logo-right.jpg' border=0></a></td>
+
+          <td width=100% bgcolor=#3B5998>&nbsp;</td></tr></table></td></tr>
+
+          <tr><td><table cellspacing=0 cellpadding=4 border=0 width=100%><tr height=21>
+
+          <!--<td bgcolor=#3B5998 width=10>&nbsp;</td>-->
+
+		
+
+                    <td bgcolor=#3B5998 width=100%>&nbsp;</td>
+
+          </tr></table></td>
+
+          </tr></table>
+
+      </td></tr></table>
+
+  </td></tr>
+
+  <tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%>
+
+      <tr><td valign=top>
+
+      <table cellspacing=0 cellpadding=0 border=0 width=105>
+
+        <tr><td>
+
+			        
+
+         
+
+
+
+
+
+        </td></tr>
+
+
+
+      </td></tr>
+
+      </table>
+
+      </td><td width=595 valign=top>
+
+        <table hidden class="bordertable" cellspacing=0 cellpadding=0 border=1 width=100%><tr><td>
+
+
+
+	  <table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Support</td></tr></table><center><p class='title'>[ Support HarvardConnection ]</p><center><table cellspacing=0 cellpadding=0 width=95% border=0><tr><td><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Donate</td></tr></table>&nbsp;<br><center>
+
+Want more from HarvardConnection? We are eager to provide a better service to all of our users and can really use the support from our online followers. Please help by clicking the link below and donating any amount you can afford. <br><br>
+We greatly appreciate everyones support and will continue to provide the best service possible.<br><br>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_new">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+<input class='inputsubmit' type=button value='Home' onclick='javascript:document.location="home.php";'><br>&nbsp;</td></tr></table>  </td></tr></table>
+
+  </td></tr></table>
+
+  <center>
+<p><a href="#">about</a>&nbsp;&nbsp;
+  <a href="#">contact</a>&nbsp;&nbsp;
+  <a href="#">faq</a>&nbsp;&nbsp;
+  <a href="#">terms</a>&nbsp;&nbsp;
+  <a href="#">privacy</a> 
+  <br>
+  <br>famousMe &copy; {{date}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template hidden>
+
+
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<title>TheFacebook | Privacy Policy</title> 
+<link rel="stylesheet" href="style.css"> 
+<link rel="shortcut icon" href="favicon.ico"> 
+
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+   FB.Canvas.setAutoResize();
+    };
+    (function() {
+   var e = document.createElement('script'); e.async = true;
+   e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+   document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
+
+<center>
+
+<table class="bordertable" cellspacing=0 cellpadding=0 border=0 width=700>
+
+  <tr><td>
+
+      <table class="bottomborder" cellspacing=0 cellpadding=0 border=0 width=100%>
+
+      <tr><td width=350 bgcolor=#3B5998>
+
+          <img src='images/logo-left.jpg'></td>
+
+          <td><table cellspacing=0 cellpadding=0 border=0 width=100%><tr><td>
+
+          <table cellspacing=0 cellpadding=0 border=0 width=100%>
+
+          <tr><td><a href='index.php'><img src='images/logo-right.jpg' border=0></a></td>
+
+          <td width=100% bgcolor=#3B5998>&nbsp;</td></tr></table></td></tr>
+
+          <tr><td><table cellspacing=0 cellpadding=4 border=0 width=100%><tr height=21>
+
+			
+
+                    <td bgcolor=#3B5998 width=100%>&nbsp;</td>
+
+          </tr></table></td>
+
+          </tr></table>
+
+      </td></tr></table>
+
+  </td></tr>
+
+  <tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%>
+
+      <tr><td valign=top>
+
+      <table cellspacing=0 cellpadding=0 border=0 width=105>
+
+        <tr><td>
+
+		
+
+              </td></tr>
+
+      </table>
+
+      </td><td width=595 valign=top>
+
+        <table class="bordertable" cellspacing=0 cellpadding=0 border=1 width=100%><tr><td>
+
+
+
+	  <table cellspacing=0 cellpadding=2 border=0 width=100% hidden> 
+<tr><td class='white' bgcolor=#3B5998>HarvardConnection Privacy Policy</td></tr></table><center><p class='title'>[ Privacy Policy ]</p><center><table cellspacing=0 cellpadding=0 width=95% border=0><tr><td><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Coverage</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>This privacy statement covers the site www.HarvardConnection.co.  Because we want to
+demonstrate our commitment to our users' privacy, we will disclose our information
+and privacy practices below. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>About HarvardConnection and the Information We Collect</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>HarvardConnection is an online directory and social networking community that helps 
+people find friends and other people.  To accomplish this, our users create their 
+own profiles and privacy settings, and some personal information we ask for is 
+displayed to people in the groups specified in the users' privacy settings. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Information Collected by HarvardConnection</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>HarvardConnection collects user-submitted account information such as name and email
+address to identify users and send notifications related to use of the site.
+HarvardConnection also collects user-submitted profile information such as gender, 
+  field, location, courses, etc.
+<p>HarvardConnection also collects information that is not personally identifiable and
+not submitted directly by users, such as browser type and IP address.  This
+information is gathered for all users to the site.  
+<p>HarvardConnection collects information from other sources, such as newspapers and 
+instant messaging services.  This information is gathered regardless of use of
+the site. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Use of Information Obtained by HarvardConnection</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>Profile information, as well as name, email and photo, are displayed to people in the
+groups specified in a user's privacy settings to support the function of the 
+site.  Except when inviting a friend to join the site, a user's name and email will
+never be given to anyone outside the site.  No information submitted to HarvardConnection
+will be available to any user of the site who does not belong to at least one of the
+groups specified in a user's privacy settings.
+<p>We use server, IP and browser type for site administration.  We also use information 
+not directly submitted to HarvardConnection by users to supplement users' profiles unless 
+they specify that they do not want this done in their privacy settings. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Spam Policy</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>Email addresses will never be sold to anyone, and they will not be used for spam or
+any other purpose outside of the site itself. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Links</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>This site may contain links to other websites.  HarvardConnection is not responsible for
+the privacy practices of other web sites.  We encourage our users to be aware when
+they leave our site and to read the privacy statements of each and every web site that
+collects personally identifiable information.  This privacy statement applies solely
+to information collected by this web site. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Use of Cookies</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>A cookie is a piece of data stored on the user's computer tied to information about
+the user.  We use session ID cookies to confirm that users are logged in.  These cookies
+terminate once the users close the browser.  We do not and will not use cookies to collect
+private information from any user. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Third Party Advertising</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>Advertisements that appear on this web site are delivered to users by our advertising
+partners.  Our advertising partners may set cookies.  Doing this allows the advertising
+network to recognize your computer each time they send you an advertisement.  In this
+way, they may compile information about where you, or others who are using your computer,
+saw their advertisements and determine which advertisements are clicked.  This information
+allows an advertising network to deliver targeted advertisements that they believe will be
+of most interest to you.  HarvardConnection does not have access to or control of the cookies
+that may be placed by the third party advertising servers of ad networks.
+<p>This privacy statement covers the use of cookies by HarvardConnection and does not cover
+the use of cookies by any of its advertisers. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Changing or Removing Information</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>HarvardConnection users may modify or remove any of their personal information at any time
+by logging into their account.  Information will be updated immediately and old
+information will never be displayed to any user of the site. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Security</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>HarvardConnection accounts are password-protected.  This web site takes every precaution to
+protect our users' information.  Passwords are stored in hashed form in our database,
+and different sections of users' profiles are stored in different parts of our database
+to separate access to all of the information and make it more difficult to piece
+everything together.  If you have any questions about the security of our web site,
+please <a href='contact.php'>contact us</a>. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Changes in Our Privacy Policy</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>We reserve the right to change our privacy policy at any time.  If we do this, we will post
+the changes on our web site so our users are always aware of what information we collect,
+how we use it, and under what circumstances, if any, we disclose it.  If we are going to
+use users' personally identifiable information in a manner different from that stated at
+the time of collection, we will notify users via email. <br>&nbsp;</td></tr></table></td></tr></table><p><center><table class='bordertable' cellspacing=0 cellpadding=0 width=90%><tr><td><table cellspacing=0 cellpadding=2 border=0 width=100%> 
+<tr><td class='white' bgcolor=#3B5998>Contacting the Web Site</td></tr></table>&nbsp;<br><center><table cellspacing=0 cellpadding=2 border=0 width=95%><tr><td>If you have any questions about this privacy statement, the practices of this site, or
+your dealings with this web site, please <a href='contact.php'>contact us</a>. <br>&nbsp;</td></tr></table></td></tr></table><p></td></tr></table>  </td></tr></table>
+
+  </td></tr></table>
+
+  <center>
+
+
+
+  <br>
+
+  </center><br>
+
+  </td></table></table><br>
+
+</template>

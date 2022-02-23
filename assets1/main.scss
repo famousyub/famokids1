@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=Condiment);
+@import url(https://fonts.googleapis.com/css?family=Hind);
+body {
+  background-color: #AD1457;
+  text-align: center;
+  padding: 20px;
+  color: #EEFF41;
+  font-family: 'Hind', sans-serif;
+  font-size: 30px;
+  text-shadow:2px 1px 1px #111;
+}
+
+h1 {
+  font: 2.5em "Condiment";
+  text-shadow:2px 2px 3px #111;
+}
+
+a {
+ display: inline-block;
+	position: relative;
+	padding-bottom: 3px;
+  text-decoration: none;
+  font-size:30px;
+  color:#55ACEE;
+  top:40px;
+}
+
+a:after {
+    content: '';
+	display: block;
+	margin: auto;
+	height: 3px;
+	width: 0px;
+	background: transparent;
+	transition: width .5s ease, background-color .5s ease;
+}
+a:hover:after {
+	width: 100%;
+	background: #880E4F;
+}
+
+
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic&amp;subset=latin,cyrillic-ext,greek-ext,greek,cyrillic");
+
+$color-map: (
+  "black": '#000000',
+  "blue": '#000080',
+  "green": '#008000',
+  "cyan": '#008080',
+  "red": '#800000',
+  "magenta": '#800080',
+  "yellow": '#808000',
+  "grey": '#808080',
+  "light_grey": '#c0c0c0',
+  "light_blue": '#0000ff',
+  "light_green": '#00ff00',
+  "light_cyan": '#00ffff',
+  "light_red": '#ff0000', 
+  "light_magenta": '#ff00ff',
+  "light_yellow": '#ffff00',
+  "white": '#FFFFFF'  
+);
+
+body {
+  background: #000000;
+  color: #c0c0c0;
+  font-family: "Ubuntu Mono", "Courier New", "Courier", "Lucida Console", "Terminus";
+  font-size: 10pt;
+  // overflow: hidden;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+
+
+
+  span, a {
+    &.bold {
+      font-weight:		bold;
+    }
+
+    &.underline {
+      text-decoration:	underline;
+    }
+
+    &.italic {
+      font-style:			italic;
+    }
+
+    &.normal {
+      font-weight:		normal;
+      font-style:			normal;
+      text-decoration:	none;
+    }
+
+    &.link {
+      text-decoration:	underline;
+      cursor:				pointer;
+    }
+
+    @each $name, $color in $color-map {
+      &.#{$name} {
+        color: #{$color};
+      }
+    }
+  }
+}

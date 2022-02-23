@@ -1,0 +1,71 @@
+#login {
+  font-weight: bold;
+  font-family: Noto Sans KR;
+  color: #ffffff;
+}
+@media (min-width: 1000px){
+  #login{
+    font-size: 3.76vw;
+  }
+}
+@media (max-width: 999.82px) {
+  @media(min-width: 540px) {
+    #login{
+      font-size: 37.6px;
+    }
+  }
+}
+@media (max-width: 539.92px) {
+  #login{
+    font-size: 1.43617vw;
+  }
+}
+#lotext {
+  color: #ffffff;
+}
+@media(min-width: 600px) {
+  .form {
+    width: 300px;
+  }
+}
+@media(max-width: 599.82px){
+  .form {
+    width: 50vw;
+  }
+}
+.domi {
+  font-family: Noto Sans KR;
+  font-style: black;
+  color: #ffffff
+}
+.larger{
+  width: 100%;
+}
+.control {
+  text-align: center;
+  bottom: 8px;
+}
+.cover {
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+}
+.cover.full-window {
+  padding-top: 35vh;
+  text-align: center;
+  width: 100%;
+}
+.covra{
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 25%;
+}
+.btn-light {
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-light:hover {
+  background-color: #949494;
+}

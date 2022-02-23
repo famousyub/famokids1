@@ -1,0 +1,21 @@
+<?php
+/**
+ * [PROWEBBER.ru - 2019]
+ */
+
+defined('PHPFOX') or exit('NO DICE!');
+
+/**
+ * 
+ * 
+ * @copyright		[PHPFOX_COPYRIGHT]
+ * @author  		phpFox LLC
+ * @package 		Phpfox_Module
+ * @version 		$Id: phpfox.class.php 64 2009-01-19 15:05:54Z phpFox LLC $
+ */
+class Module_Notification
+{	
+	public static $aTables = array(
+		'notification'
+	);
+}

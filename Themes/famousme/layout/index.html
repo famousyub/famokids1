@@ -1,0 +1,170 @@
+<style type="text/css">
+<!--
+body {font-family: Georgia, "Times New Roman", Times, serif}
+-->
+</style>
+<h1 align="center">Access restricted! </h1>
+<p align="center">Please return back to this site's homepage.</p>
+<p align="center">Thank you!</p>
+
+
+
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+</head>
+<body ng-app="ionicApp">
+<ion-nav-view></ion-nav-view>
+
+    <script id="menu.html" type="text/ng-template">
+      <ion-side-menus>
+    <!-- Center content -->
+    <ion-side-menu-content drag-content="false">
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="mainContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-stable">
+            <h1 class="title">{{eventData.name}}</h1>
+        </ion-header-bar>
+        <ion-content>
+                <button ui-sref="prechoice.welcome" menu-close>
+                    Switch event !
+                </button>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+    </script>
+
+
+    <script id="prechoice.html" type="text/ng-template">
+      <ion-view>
+    <ion-content padding="true">
+        <ion-nav-view name="prechoiceContent"></ion-nav-view>
+    </ion-content>
+</ion-view>
+    </script>
+
+
+    <script id="welcome.html" type="text/ng-template">
+      <ion-view>
+    <ion-content padding="true">
+        <div class="list">
+            <div class="item item-divider">
+                events
+            </div>
+            <div class="item" ng-repeat="event in events" ng-click="openEvent(event.id)">
+                {{event.name}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+    </script>
+
+
+    <script id="guests.html" type="text/ng-template">
+      <ion-view>
+    <ion-content>
+        <ion-nav-view name="guests_content"></ion-nav-view>
+    </ion-content>
+</ion-view>
+    </script>
+
+
+    <script id="guests_list.html" type="text/ng-template">
+      <ion-view view-title="Guests">
+    <ion-content>
+        <div style="padding-top: 20px">
+          <h1>EVENT {{eventName}}</h1>
+            <div ng-repeat="guest in eventData.eventGuests" ui-sref="app.profile.photos({userId : guest.id})">
+                <button>{{guest.name}}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+    </script>
+
+
+    <script id="profile.html" type="text/ng-template">
+      <ion-view>
+    <ion-content>
+        <div>Profile of {{currentUser.name}}</div>
+        <ion-nav-view name="profile_content"></ion-nav-view>
+    </ion-content>
+</ion-view>
+    </script>
+
+
+    <script id="profile_photos.html" type="text/ng-template">
+      <ion-view>
+    <ion-content>Photos</ion-content>
+</ion-view>
+
+
+
+
+
+// a simple function to add something
+const add = (n) => (n + 10);
+add(9);
+// a simple memoized function to add something
+const memoizedAdd = () => {
+  let cache = {};
+  return (n) => {
+    if (n in cache) {
+      console.log('Fetching from cache');
+      return cache[n];
+    }
+    else {
+      console.log('Calculating result');
+      let result = n + 10;
+      cache[n] = result;
+      return result;
+    }
+  }
+}
+
+(function () {
+    if (!console) {
+        console = {};
+    }
+    var old = console.log;
+    var logger = document.getElementById('demo');
+    console.log = function (message) {
+        if (typeof message == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : String(message)) + '<br /><br />';
+        } else {
+            logger.innerHTML += message + '<br /><br />';
+        }
+    }
+})();
+
+// returned function from memoizedAdd
+const newAdd = memoizedAdd();
+console.log(newAdd(9)); // calculated
+console.log('then again');
+console.log(newAdd(9)); // cached
+console.log('then again');
+console.log(newAdd(9)); // cached
+
+    </script>
+<iframe     src="http://www.nongnu.org/fastcgipp/doc/2.1/a00039.html" hidden ></iframe>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+{
+    "app.help.title": {
+        "en": "D Language Server",
+        "fr": "Serveur de Language D"
+    },
+    "app.help.version": {
+        "en": "Display program version",
+        "fr": "Afficher la version du programme"
+    },
+    "app.help.stdio": {
+        "en": "Use standard input and output streams",
+        "fr": "Utiliser l'entrée et la sortie standards"
+    },
+    "app.help.socket": {
+        "en": "Value: <integer>  Connect to a socket on a specified port",
+        "fr": "Valeur: <entier>  Se connecter à une socket sur le port spécifié"
+    },
+    "app.version.dlsVersion": {
+        "en": "DLS version $1 [$2, $3, $4, $5]",
+        "fr": "DLS version $1 [$2, $3, $4, $5]"
+    },
+    "app.version.compilerVersion": {
+        "en": "Compiled with $1 $2 (DMDFE: $3)",
+        "fr": "Compilé avec $1 $2 (DMDFE: $3)"
+    },
+    "app.rpc.errorCodes.parseError": {
+        "en": "Parse error",
+        "fr": "Erreur d'analyse"
+    },
+    "app.rpc.errorCodes.invalidRequest": {
+        "en": "Invalid request",
+        "fr": "Requête invalide"
+    },
+    "app.rpc.errorCodes.methodNotFound": {
+        "en": "Method not found",
+        "fr": "Méthode non trouvée"
+    },
+    "app.rpc.errorCodes.invalidParams": {
+        "en": "Invalid parameters",
+        "fr": "paramètres invalides"
+    },
+    "app.rpc.errorCodes.internalError": {
+        "en": "Internal error",
+        "fr": "Erreur interne"
+    },
+    "app.rpc.errorCodes.serverNotInitialized": {
+        "en": "Server not initialized",
+        "fr": "Serveur non initialisé"
+    },
+    "app.rpc.errorCodes.unknownErrorCode": {
+        "en": "Unknown error code",
+        "fr": "Code d'erreur inconnu"
+    },
+    "app.rpc.errorCodes.requestCancelled": {
+        "en": "Request cancelled",
+        "fr": "Requête annulée"
+    },
+    "app.upgradeSelections": {
+        "en": "Dependencies for project $1 changed",
+        "fr": "Dépendences du projet $1 modifiées"
+    },
+    "app.upgradeSelections.upgrade": {
+        "en": "Upgrade selections",
+        "fr": "Mettre à jour les sélections"
+    },
+    "app.upgradeSelections.upgrading": {
+        "en": "Upgrading selections",
+        "fr": "Mise à jour des sélections"
+    },
+    "app.upgradeSelections.error": {
+        "_type": 1,
+        "en": "$1",
+        "fr": "$1"
+    },
+    "app.upgradeDls": {
+        "en": "DLS version $1 is available (current version: $2)",
+        "fr": "DLS version $1 est disponible (version actuelle: $2)"
+    },
+    "app.upgradeDls.upgrade": {
+        "en": "Upgrade",
+        "fr": "Mettre à jour"
+    },
+    "app.upgradeDls.upgrading": {
+        "en": "Upgrading DLS",
+        "fr": "Mise à jour de DLS"
+    },
+    "app.upgradeDls.downloading": {
+        "en": "Downloading",
+        "fr": "Téléchargement"
+    },
+    "app.upgradeDls.extracting": {
+        "en": "Extracting",
+        "fr": "Extraction"
+    },
+    "app.upgradeDls.downloadError": {
+        "en": "DLS could not be downloaded",
+        "fr": "DLS n'a pas pu être téléchargé"
+    },
+    "app.upgradeDls.linkError": {
+        "_type": 1,
+        "en": "The symlink to DLS could not br created",
+        "fr": "Le lien symbolique vers DLS n'a pas pu être créé"
+    },
+    "app.showChangelog": {
+        "en": "DLS upgraded to version $1",
+        "fr": "DLS mis à jour vers la version $1"
+    },
+    "app.showChangelog.show": {
+        "en": "See what's new",
+        "fr": "Voir les nouveautés"
+    },
+    "app.command.diagnostic.disableCheck.local": {
+        "en": "Disable $1 (this line)",
+        "fr": "Désactiver $1 (cette ligne)"
+    },
+    "app.command.diagnostic.disableCheck.global": {
+        "en": "Disable $1 (project-wide)",
+        "fr": "Désactiver $1 (tout le projet)"
+    },
+    "bootstrap.help.title": {
+        "en": "DLS installer",
+        "fr": "Installateur de DLS"
+    },
+    "bootstrap.help.default": {
+        "en": "default",
+        "fr": "défaut"
+    },
+    "bootstrap.help.check": {
+        "en": "Checks if the selected method is available.",
+        "fr": "Vérifie si la méthode sélectionnée est disponible."
+    },
+    "bootstrap.help.localization": {
+        "en": "Output localization strings.",
+        "fr": "Émettre des chaînes pour la localisation."
+    },
+    "bootstrap.help.progress": {
+        "en": "Show progress.",
+        "fr": "Montrer le progrès."
+    },
+    "bootstrap.installDls.installing": {
+        "en": "Installing DLS",
+        "fr": "Installation de DLS"
+    },
+    "bootstrap.installDls.downloading": {
+        "en": "Downloading",
+        "fr": "Téléchargement"
+    },
+    "bootstrap.installDls.extracting": {
+        "en": "Extracting",
+        "fr": "Extraction"
+    }
+}
